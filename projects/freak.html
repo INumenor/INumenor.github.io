@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FREAK — Batuhan Çar</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #18181f;
+  --accent: #00e5ff;
+  --accent2: #7c4dff;
+  --text: #e8e8f0;
+  --muted: #6b6b80;
+  --border: #1e1e2e;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,15,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; color: var(--accent); text-decoration: none; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 1.2rem; background: var(--accent); color: var(--bg); text-decoration: none; border-radius: 2px; font-weight: 600; transition: all 0.2s; }
+.nav-cta:hover { background: #33eeff; }
+
+/* HERO */
+.project-hero { position: relative; min-height: 65vh; display: flex; align-items: flex-end; padding: 8rem 3rem 4rem; z-index: 1; border-bottom: 1px solid var(--border); }
+.hero-glow { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(124,77,255,0.1), rgba(0,229,255,0.04)); pointer-events: none; }
+.back-link { display: inline-block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s; }
+.back-link:hover { color: var(--accent); }
+.eyebrow { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
+.platform-tag { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(0,229,255,0.25); padding: 0.2rem 0.5rem; border-radius: 2px; }
+.yr { font-size: 0.65rem; color: var(--muted); }
+.project-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 8vw, 7rem); letter-spacing: -0.04em; line-height: 0.93; margin-bottom: 1rem; background: linear-gradient(135deg, var(--text), rgba(232,232,240,0.55)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.project-sub { font-size: 0.82rem; color: var(--accent2); margin-bottom: 1rem; }
+.project-sub strong { color: var(--text); }
+.project-lead { font-size: 0.88rem; line-height: 1.85; color: var(--muted); max-width: 580px; margin-bottom: 1.5rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+.tag { font-size: 0.6rem; padding: 0.2rem 0.5rem; background: rgba(124,77,255,0.1); border: 1px solid rgba(124,77,255,0.2); border-radius: 2px; color: #a78bfa; letter-spacing: 0.03em; }
+.cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 1.6rem; text-decoration: none; border-radius: 2px; transition: all 0.2s; display: inline-block; }
+.btn-primary { background: var(--accent); color: var(--bg); font-weight: 600; }
+.btn-primary:hover { background: #33eeff; transform: translateY(-2px); }
+.btn-ghost { border: 1px solid var(--border); color: var(--muted); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+/* BODY */
+.body-wrap { max-width: 1100px; margin: 0 auto; padding: 0 3rem 6rem; position: relative; z-index: 1; }
+.sec { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+.sec:last-of-type { border-bottom: none; }
+.sec-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.8rem; }
+.sec-label::after { content: ''; flex: 1; max-width: 50px; height: 1px; background: var(--accent); opacity: 0.4; }
+.sec-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+.body-text { font-size: 0.82rem; line-height: 1.85; color: var(--muted); margin-bottom: 1rem; }
+
+/* GALLERY */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.gallery-item { width: 100%; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+.ph-box { width: 100%; height: 220px; background: var(--surface2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
+.ph-box .ico { font-size: 2rem; opacity: 0.2; }
+.ph-box span { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* VIDEO */
+.video-wrap { border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+
+/* TWO COL */
+.two-col { display: grid; grid-template-columns: 1fr 290px; gap: 3rem; align-items: start; }
+.info-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.info-row { display: flex; justify-content: space-between; padding: 0.65rem 1.2rem; border-bottom: 1px solid var(--border); font-size: 0.73rem; }
+.info-row:last-child { border-bottom: none; }
+.info-label { color: var(--muted); }
+.info-val { color: var(--text); font-weight: 500; }
+
+/* CONTRIB GRID */
+.contrib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; }
+.contrib-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
+.contrib-card:hover { border-color: rgba(0,229,255,0.2); transform: translateY(-2px); }
+.contrib-icon { font-size: 1.5rem; margin-bottom: 0.7rem; }
+.contrib-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.45rem; }
+.contrib-desc { font-size: 0.73rem; line-height: 1.7; color: var(--muted); }
+
+/* CHALLENGES */
+.challenges { display: flex; flex-direction: column; gap: 1.2rem; }
+.ch-item { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.ch-head { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.4rem; background: var(--surface2); border-bottom: 1px solid var(--border); }
+.ch-num { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--accent); opacity: 0.4; letter-spacing: -0.03em; }
+.ch-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; }
+.ch-body { display: grid; grid-template-columns: 1fr 1fr; }
+.ch-col { padding: 1.3rem 1.4rem; }
+.ch-col:first-child { border-right: 1px solid var(--border); }
+.ch-lbl { font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+
+/* NEXT */
+.next-proj { padding: 4rem 0 1rem; }
+.next-lbl { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.next-link { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text); text-decoration: none; transition: color 0.2s; }
+.next-link:hover { color: var(--accent); }
+
+footer { position: relative; z-index: 1; text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 0.65rem; color: var(--muted); }
+footer a { color: var(--accent); text-decoration: none; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .project-hero { padding: 6rem 1.5rem 3rem; }
+  .body-wrap { padding: 0 1.5rem 4rem; }
+  .two-col { grid-template-columns: 1fr; }
+  .ch-body { grid-template-columns: 1fr; }
+  .ch-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">BATUHAN ÇAR</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#projects">Projects</a></li>
+    <li><a href="../index.html#experience">Experience</a></li>
+    <li><a href="../index.html#skills">Skills</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+  <a href="../index.html#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<div class="project-hero">
+  <div class="hero-glow"></div>
+  <div>
+    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+    <div class="eyebrow">
+      <span class="platform-tag">PC · Co-op · Puzzle · Adventure</span>
+      <span class="yr">2024</span>
+    </div>
+    <div class="project-title">FREAK</div>
+    <p class="project-sub">Game Developer — <strong>DeepJam / GameDev.ist</strong></p>
+    <p class="project-lead">Top 12 game in DeepJam. A co-op puzzle adventure developed during a competitive 3-month program with GameDev.ist. Responsible for most backend and frontend systems including networking, character mechanics, and optimizations.</p>
+    <div class="tags">
+      <span class="tag">Unity</span><span class="tag">Photon Fusion</span><span class="tag">Blender</span><span class="tag">Co-op</span><span class="tag">Puzzle</span><span class="tag">Adventure</span>
+    </div>
+    <div class="cta-row">
+      <a href="https://www.youtube.com/watch?v=D9XmHQ3SH1k" target="_blank" class="btn btn-primary">▶ Watch Demo</a>
+    </div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- GALLERY -->
+  <div class="sec reveal">
+    <div class="sec-label">Gallery</div>
+    <div class="gallery">
+      <div class="gallery-item"><div class="ph-box"><img src="../images/freak.png" style="width:100%;height:260px;object-fit:cover;display:block"></div></div>
+      <div class="gallery-item"><div class="ph-box"><img src="../images/freak_1.png" style="width:100%;height:260px;object-fit:cover;display:block"></div></div>
+      <div class="gallery-item"><div class="ph-box"><img src="../images/freak_2.png" style="width:100%;height:260px;object-fit:cover;display:block"></div></div>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="sec reveal">
+    <div class="sec-label">Demo Video</div>
+    <div class="video-wrap">
+      <a href="https://www.youtube.com/watch?v=D9XmHQ3SH1k" target="_blank"
+         style="display:block; position:relative;">
+        <img src="https://img.youtube.com/vi/D9XmHQ3SH1k/maxresdefault.jpg"
+             style="width:100%; height:420px; object-fit:cover; display:block;">
+        <div style="position:absolute; inset:0; display:flex; align-items:center;
+                    justify-content:center; background:rgba(0,0,0,0.4);">
+          <div style="width:72px; height:72px; background:red; border-radius:50%;
+                      display:flex; align-items:center; justify-content:center; font-size:28px;">▶</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="sec reveal">
+    <div class="sec-label">Overview</div>
+    <div class="two-col">
+      <div>
+        <div class="sec-title">About the Project</div>
+        <p class="body-text">FREAK is a co-op puzzle adventure game developed through GameDev.ist's competitive 3-month development program. At the end of the program, games were submitted to DeepJam — and FREAK was selected among the top 12 titles.</p>
+        <p class="body-text">The game was designed for cooperative play where players must work together to solve environmental puzzles and navigate through an adventure setting. I owned the majority of the technical implementation including networking, character systems, and performance optimization.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-row"><span class="info-label">Program</span><span class="info-val">GameDev.ist</span></div>
+        <div class="info-row"><span class="info-label">Competition</span><span class="info-val">DeepJam — Top 12</span></div>
+        <div class="info-row"><span class="info-label">Genre</span><span class="info-val">Co-op Puzzle Adventure</span></div>
+        <div class="info-row"><span class="info-label">Platform</span><span class="info-val">PC</span></div>
+        <div class="info-row"><span class="info-label">Duration</span><span class="info-val">3 months</span></div>
+        <div class="info-row"><span class="info-label">Engine</span><span class="info-val">Unity + Fusion</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTRIBUTIONS -->
+  <div class="sec reveal">
+    <div class="sec-label">Contributions</div>
+    <div class="sec-title">What I Built</div>
+    <div class="contrib-grid">
+      <div class="contrib-card">
+        <div class="contrib-icon">🧩</div>
+        <div class="contrib-title">Backend Systems</div>
+        <p class="contrib-desc">Designed and implemented the core backend architecture — game state management, data flow, and persistence layer supporting the co-op experience.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-icon">🎮</div>
+        <div class="contrib-title">Character Movement</div>
+        <p class="contrib-desc">Built the full character controller — movement, animations, interactions, and physics responses for the player characters.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-icon">🌐</div>
+        <div class="contrib-title">Multiplayer Networking</div>
+        <p class="contrib-desc">Implemented co-op session management and real-time state sync using Photon Fusion, enabling seamless two-player puzzle solving.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-icon">⚡</div>
+        <div class="contrib-title">Optimization</div>
+        <p class="contrib-desc">Profiled and optimized rendering, physics, and networking to ensure smooth performance on a range of PC hardware configurations.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-icon">🔗</div>
+        <div class="contrib-title">Interaction System</div>
+        <p class="contrib-desc">Built the object interaction framework allowing players to manipulate puzzle elements, trigger events, and collaborate on shared objects.</p>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-icon">🏆</div>
+        <div class="contrib-title">DeepJam Top 12</div>
+        <p class="contrib-desc">The game was evaluated and selected among the top 12 entries out of all submissions in the DeepJam competition.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHALLENGES -->
+  <div class="sec reveal">
+    <div class="sec-label">Deep Dive</div>
+    <div class="sec-title">Technical Challenges & Solutions</div>
+    <div class="challenges">
+      <div class="ch-item">
+        <div class="ch-head"><span class="ch-num">01</span><span class="ch-name">Co-op Puzzle State Synchronization</span></div>
+        <div class="ch-body">
+          <div class="ch-col"><div class="ch-lbl">Challenge</div><p class="body-text">Puzzle objects needed to reflect changes from either player instantly and consistently — a desync would break the puzzle logic entirely.</p></div>
+          <div class="ch-col"><div class="ch-lbl">Solution</div><p class="body-text">Used Photon Fusion's server-authoritative NetworkObjects for all puzzle state, with client-side optimistic updates rolled back on conflict to maintain correctness.</p></div>
+        </div>
+      </div>
+      <div class="ch-item">
+        <div class="ch-head"><span class="ch-num">02</span><span class="ch-name">3-Month Deadline Pressure</span></div>
+        <div class="ch-body">
+          <div class="ch-col"><div class="ch-lbl">Challenge</div><p class="body-text">Delivering a polished, submission-ready game with networking, puzzles, art, and optimization within a hard 3-month deadline.</p></div>
+          <div class="ch-col"><div class="ch-lbl">Solution</div><p class="body-text">Prioritized core loop first, built modular systems for quick iteration, and cut scope strategically to ensure a complete and polished experience by deadline.</p></div>
+        </div>
+      </div>
+      <div class="ch-item" style="opacity:0.45">
+        <div class="ch-head"><span class="ch-num">03</span><span class="ch-name">Add your own challenge here</span></div>
+        <div class="ch-body">
+          <div class="ch-col"><div class="ch-lbl">Challenge</div><p class="body-text">Describe a technical problem you faced...</p></div>
+          <div class="ch-col"><div class="ch-lbl">Solution</div><p class="body-text">Describe how you solved it...</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT PROJECT -->
+  <div class="next-proj reveal">
+    <div class="next-lbl">Next Project</div>
+    <a href="bomberchef.html" class="next-link">BomberChef →</a>
+  </div>
+
+</div>
+
+<footer><p>© 2025 Batuhan Çar · <a href="../index.html">Portfolio</a></p></footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
